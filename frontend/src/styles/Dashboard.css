@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+}
+
+.container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #2d89ef;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #246ed3;
+}
+.auth-r{
+  color: #2d89ef;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.auth-r:hover{
+  color:#246ed3;
+  text-decoration: none;
+}
+
+.book-list {
+  list-style: none;
+  padding: 0;
+}
+
+.book-item {
+  background: #fff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+.book-item img {
+  max-width: 100px;
+  margin-top: 10px;
+  display: block;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
