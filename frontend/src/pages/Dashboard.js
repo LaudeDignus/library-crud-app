@@ -30,7 +30,7 @@ const Dashboard = () => {
 
     if (searchQuery) {
       result = result.filter((book) =>
-        book.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+        book.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
@@ -93,10 +93,13 @@ const Dashboard = () => {
     }
   };
 
-  const totalPages = Math.ceil(
-    books.filter((book) =>
-      book.title.toLowerCase().includes(searchQuery.toLowerCase())
-    ).length / booksPerPage
+  const totalPages = Math.max(
+    1,
+    Math.ceil(
+      books.filter((book) =>
+        book.title.toLowerCase().includes(searchQuery.toLowerCase())
+      ).length / booksPerPage
+    )
   );
 
   return (
