@@ -7,10 +7,10 @@ Développée dans le cadre du programme **Talent4Startups – EDACY 2025**, cett
 ## 🌐 Accès en ligne
 
 - 🎯 **Interface utilisateur (Frontend)** :  
-  [https://snazzy-torte-932222.netlify.app](https://snazzy-torte-932222.netlify.app)
+  [https://miwodi-library-crud-app.netlify.app](https://miwodi-library-crud-app.netlify.app)
 
 - 🛠️ **API sécurisée (Backend Render)** :  
-  [https://edacy-crud-backend.onrender.com/api](https://edacy-crud-backend.onrender.com/api)
+  [https://library-crud-app-backend.onrender.com](https://library-crud-app-backend.onrender.com)
 
 ---
 
