@@ -60,7 +60,7 @@ Ce projet a été réalisé pour mettre en pratique les compétences Full Stack 
 
 ## 👤 Auteur
 
-Développé par **@LaudeDignus** pour *Talent4Startups – EDACY 2025*
+Développé par **[@LaudeDignus](https://github.com/LaudeDignus)** pour *Talent4Startups – EDACY 2025*
 
 ---
 
