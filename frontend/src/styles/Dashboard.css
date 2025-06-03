@@ -9,13 +9,49 @@
   padding-bottom: 6px;
 }
 
-h2 {
-  color: #333;
-  margin-bottom: 1rem;
-  text-align: center;
-  font-size: 40px;
-  margin-top: 0;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
 }
+
+.header h2 {
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+  font-size: 1.8rem;
+  color: #333;
+  animation: fadein 0.5s ease-in-out;
+}
+
+.logout {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 10px;
+}
+
+.btn-logout {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
 /*Formulaire*/
 .form-add-book{
     margin: 9px;

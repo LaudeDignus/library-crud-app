@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import API from "../services/api";
 import "../styles/Dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [books, setBooks] = useState([]);
@@ -11,6 +12,7 @@ const Dashboard = () => {
     year: "",
     image: "",
   });
+
   const [editId, setEditId] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -93,6 +95,13 @@ const Dashboard = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); 
+    navigate("/login");
+  };
+
   const totalPages = Math.max(
     1,
     Math.ceil(
@@ -104,8 +113,15 @@ const Dashboard = () => {
 
   return (
     <div className="container">
-      <h2>{editId ? "Modifier un livre" : "Ajouter un livre"}</h2>
+      <div className="header">
+        <h2>{editId ? "Modifier un livre" : "Ajouter un livre"}</h2>
 
+        <div className="logout">
+          <button onClick={handleLogout} className="btn-logout">
+            Se déconnecter
+          </button>
+        </div>
+      </div>
       <form onSubmit={handleSubmit} className="form-add-book">
         <div className="input-row">
           <input
