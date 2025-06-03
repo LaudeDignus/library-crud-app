@@ -1,10 +1,14 @@
+body{
+  background:#03191E
+}
+
 .container {
   padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f9fbfd;
   max-width: 800px;
   margin: auto;
-  border: black solid;
+  border-radius: 25px;
   padding-top: 6px;
   padding-bottom: 6px;
 }

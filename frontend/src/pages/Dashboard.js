@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import API from "../services/api";
 import "../styles/Dashboard.css";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
+
 
 const Dashboard = () => {
   const [books, setBooks] = useState([]);
@@ -70,6 +72,8 @@ const Dashboard = () => {
     }
   };
 
+  const headerRef = useRef(null);
+
   const handleEdit = (book) => {
     setEditId(book._id);
     setNewBook({
@@ -78,6 +82,7 @@ const Dashboard = () => {
       year: book.year,
       image: book.image || "",
     });
+    headerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const handleCancelEdit = () => {
@@ -113,7 +118,7 @@ const Dashboard = () => {
 
   return (
     <div className="container">
-      <div className="header">
+      <div className="header" ref={headerRef}>
         <h2>{editId ? "Modifier un livre" : "Ajouter un livre"}</h2>
 
         <div className="logout">
