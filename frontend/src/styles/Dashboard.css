@@ -56,6 +56,7 @@
 .form-add-book{
     margin: 9px;
     padding: 9px;
+    border-bottom: 1px solid #ddd;
 }
 .form-add-book .input-row {
   display: flex;
