@@ -12,6 +12,8 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -22,12 +24,17 @@ const Register = () => {
       await API.post("/auth/register", formData);
       navigate("/login");
     } catch (err) {
-      console.error(err);
-      alert("Erreur d'inscription ❌");
+      setShowErrorPopup(true);
+      setTimeout(() => setShowErrorPopup(false), 2000);
     }
   };
-return (
+  return (
     <div className="auth-container">
+      {showErrorPopup && (
+        <div className="popup-error-register">
+          ❌ Inscription Refuse !
+        </div>
+      )},
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2 className="auth-title">Créer un compte</h2>
         <input

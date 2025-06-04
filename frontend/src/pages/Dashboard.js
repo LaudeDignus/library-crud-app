@@ -4,7 +4,6 @@ import "../styles/Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 
-
 const Dashboard = () => {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
@@ -55,20 +54,29 @@ const Dashboard = () => {
     setNewBook({ ...newBook, [e.target.name]: e.target.value });
   };
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccessModif, setShowSuccessModif] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editId) {
         await API.put(`/books/${editId}`, newBook);
         setEditId(null);
+        setShowSuccessModif(true);
+        setTimeout(() => setShowSuccessModif(false), 1000);
       } else {
         await API.post("/books", newBook);
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 1500);
       }
       setNewBook({ title: "", author: "", year: "", image: "" });
       fetchBooks();
     } catch (err) {
       console.error(err);
-      alert("Erreur lors de la soumission");
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 1500);
     }
   };
 
@@ -90,20 +98,35 @@ const Dashboard = () => {
     setNewBook({ title: "", author: "", year: "", image: "" });
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Supprimer ce livre ?")) return;
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const [showConfirmPopup, setShowConfirmPopup] = useState(false);
+
+  const askDeleteConfirmation = (id) => {
+    setConfirmDeleteId(id);
+    setShowConfirmPopup(true);
+  };
+
+  const confirmDelete = async () => {
     try {
-      await API.delete(`/books/${id}`);
+      await API.delete(`/books/${confirmDeleteId}`);
       fetchBooks();
+      setShowConfirmPopup(false);
+      setConfirmDeleteId(null);
     } catch (err) {
       console.error(err);
+      setShowConfirmPopup(false);
     }
+  };
+
+  const cancelDelete = () => {
+    setShowConfirmPopup(false);
+    setConfirmDeleteId(null);
   };
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); 
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
@@ -118,6 +141,34 @@ const Dashboard = () => {
 
   return (
     <div className="container">
+      {showPopup && (
+        <div className="popup-error">
+          ❌ Une erreur est survenue lors de la soumission.
+        </div>
+      )}
+
+      {showSuccess && (
+        <div className="popup-success">✅ Livre ajouté avec succès !</div>
+      )}
+      {showSuccessModif && (
+        <div className="popup-success">✅ Livre modifié avec succès !</div>
+      )}
+      {showConfirmPopup && (
+        <div className="popup-confirm-overlay">
+          <div className="popup-confirm-box">
+            <p> Voulez-vous supprimer ce livre ?</p>
+            <div className="popup-buttons">
+              <button className="btn-confirm" onClick={confirmDelete}>
+                Oui
+              </button>
+              <button className="btn-cancel-delete" onClick={cancelDelete}>
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="header" ref={headerRef}>
         <h2>{editId ? "Modifier un livre" : "Ajouter un livre"}</h2>
 
@@ -205,7 +256,7 @@ const Dashboard = () => {
               </button>
               <button
                 className="btn-delete"
-                onClick={() => handleDelete(book._id)}
+                onClick={() => askDeleteConfirmation(book._id)}
               >
                 Supprimer
               </button>
