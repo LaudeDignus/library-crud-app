@@ -8,6 +8,8 @@ Elle permet à un utilisateur authentifié de gérer une collection de livres : 
 > 
 > 🔗 https://library-crud-app-backend.onrender.com
 
+Si vous voulez tester avec un backend locale :
+> Aller dans `./src/services/api.js` et modifier `baseURL: "https://library-crud-app-backend.onrender.com"` par ton chemin backend .
 ---
 
 ## ⚙️ Technologies utilisées
